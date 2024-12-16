@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Welcome, {{ user['name'] }}!</h1>
+
+        <div class="row">
+            <!-- User Information -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>User Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ user['name'] }}</p>
+                        <p><strong>Aadhaar:</strong> {{ user['aadhaar'] }}</p>
+                        <p><strong>PAN:</strong> {{ user['pan'] }}</p>
+                        <p><strong>Mobile:</strong> {{ user['mobile'] }}</p>
+                        <p><strong>Email:</strong> {{ user['email'] }}</p>
+                        <p><strong>Status:</strong> {{ user['status'] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-card Generation -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Your E-card</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if user['status'] == 'Approved' %}
+                            <p>Your e-card has been approved. You can download it below:</p>
+                            <a href="{{ url_for('download_ecard', user_id=user['_id']) }}" class="btn btn-primary">Download E-card</a>
+                        {% else %}
+                            <p>Your e-card is currently under review. Please check back later.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="text-center">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

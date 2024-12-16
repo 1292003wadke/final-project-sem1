@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Card Generation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+        .ecard-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .ecard-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .ecard-info div {
+            width: 48%;
+        }
+        .ecard-info h3 {
+            color: #333;
+        }
+        .card-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        .card-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ecard-container">
+        <h1>E-Card Generation</h1>
+
+        <div class="ecard-info">
+            <div>
+                <h3>User Details</h3>
+                <p>Name: {{ user.name }}</p>
+                <p>Aadhaar: {{ user.aadhaar }}</p>
+                <p>PAN: {{ user.pan }}</p>
+                <p>Mobile: {{ user.mobile }}</p>
+            </div>
+            <div>
+                <h3>Status: {{ user.status }}</h3>
+                <p>Email: {{ user.email }}</p>
+            </div>
+        </div>
+
+        <button class="card-btn">Generate E-card</button>
+    </div>
+
+</body>
+</html>
